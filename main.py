@@ -1,6 +1,6 @@
 import requests
 from api_key import API_TOKEN
-
+import PIL.Image
 
 def call(prompt: str) -> str:
     resp = requests.post(
@@ -12,6 +12,6 @@ def call(prompt: str) -> str:
     return resp.json().get('candidates')[0].get('content').get('parts')[0].get('text')
 
 
-thought = call(
-    'Are you able to analyze images? Answer in under 300 characters')
-print('%d: %s' % (0, thought))
+question = call(
+    'Are you able to process images?')
+print('%d: %s' % (0, question))
