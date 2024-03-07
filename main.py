@@ -1,17 +1,33 @@
 import requests
+import base64
 from api_key import API_TOKEN
-import PIL.Image
 
-def call(prompt: str) -> str:
+def ask(prompt: str, image_path: str) -> str:
+    with open(image_path, "rb") as f:
+        image_data = base64.b64encode(f.read()).decode("utf-8")
+
+    query = {'contents': [
+        {'parts': [
+            {'text': prompt},
+            {'inline_data': {
+                'mime_type': 'image/jpeg',
+                'data': str(image_data)
+            }}
+        ]}
+    ]}
     resp = requests.post(
-        'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' + API_TOKEN,
-        json={'contents': [{'parts': [{'text': prompt}]}]})
-
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-vision:generateContent?key=' + API_TOKEN,
+        json=query)
     if resp.status_code != 200:
+        print(resp.text + "- ERROR")
         return ''
-    return resp.json().get('candidates')[0].get('content').get('parts')[0].get('text')
+
+    result = None
+    try:
+        result = resp.json()
+    except Exception as e:
+        pass
+    return result
 
 
-question = call(
-    'Are you able to process images?')
-print('%d: %s' % (0, question))
+print(ask("describe what the image shows in a sentence", 'image2.jpeg'))
