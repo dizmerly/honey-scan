@@ -30,4 +30,5 @@ def ask(prompt: str, image_path: str) -> str:
     return result
 
 
-print(ask("describe what the image shows in a sentence", 'image2.jpeg'))
+print(ask("describe the food product shown in the image in under 10 words", 'image3.jpg'))
+
