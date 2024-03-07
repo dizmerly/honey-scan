@@ -6,12 +6,12 @@ that is convenient for the user to keep track of what they have in their fridge,
 compared to smart fridges that have similar technology, but are priced at thousands of dollars.
 
 
-![Drawing](Drawing 1.png)
+![Drawing](./Drawing 1.png)
 
 
 
 
-![image 1](modelAngle.png)
+![image 1](./modelAngle.png)
 
 
-![image 2](modelTopDown.png)
+![image 2](./modelTopDown.png)
