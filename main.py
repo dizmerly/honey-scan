@@ -30,5 +30,5 @@ def ask(prompt: str, image_path: str) -> str:
     return result
 
 
-print(ask("describe the food product shown in the image in under 10 words", 'image3.jpg'))
+print(ask("describe the food in the image a format that I can put into a list into a json file  ", 'image3.jpg'))
 

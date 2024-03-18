@@ -10,10 +10,10 @@ compared to smart fridges that have similar technology, but are priced at thousa
 
 
 
-![image 1](images/modelAngle.png)
+![image 1](images/modelAngle.jpeg)
 
 
-![image 2](images/modelTopDown.png)
+![image 2](images/modelTopDown.jpeg)
 
 
 The python code that the project revolves around is a script that sends requests to 
