@@ -1,6 +1,20 @@
 import requests
 import base64
 from api_key import API_TOKEN
+import json
+
+
+itemList = []
+
+def writeToJSONFile(path, fileName, data):
+    filePathNameWExt = './' + path + '/' + fileName + '.json'
+    with open(filePathNameWExt, 'a') as fp:
+        json.dump(data, fp)
+
+path = './'
+fileName = 'items'
+data={}
+
 
 def ask(prompt: str, image_path: str) -> str:
     with open(image_path, "rb") as f:
@@ -15,6 +29,9 @@ def ask(prompt: str, image_path: str) -> str:
             }}
         ]}
     ]}
+
+
+
     resp = requests.post(
         'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-vision:generateContent?key=' + API_TOKEN,
         json=query)
@@ -30,5 +47,19 @@ def ask(prompt: str, image_path: str) -> str:
     return result
 
 
-print(ask("describe the food in the image a format that I can put into a list into a json file  ", 'image3.jpg'))
+item = (ask("describe the grocery in the image in the format (What type of item it is , What the item is), for the purpose of \ "
+          "storing in a list. \ "
+          , './testImages/image4.jpg'))
 
+print(item)
+
+
+text = item.get('candidates')[0].get('content').get('parts')[0].get('text')
+itemList.append(text)
+
+print(type(text))
+
+print(itemList)
+
+data['Food'] = text
+writeToJSONFile(path, fileName, text)
