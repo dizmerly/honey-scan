@@ -47,17 +47,19 @@ def ask(prompt: str, image_path: str) -> str:
     return result
 
 
-item = (ask("describe the grocery in the image in the format (What type of item it is , What the item is), for the purpose of \ "
-          "storing in a list. \ "
-          , './testImages/image4.jpg'))
+# item = (ask("describe the grocery in the image in the format (What type of item it is , What the item is), for the purpose of \ "
+#           "storing in a list. \ "
+#           , './images/c1.png'))
+item = (ask("who is the wierder person in the image? "
+          , './images/c1.png'))
 
-print(item)
+# print(item)
 
 
 text = item.get('candidates')[0].get('content').get('parts')[0].get('text')
 itemList.append(text)
 
-print(type(text))
+# print(type(text))
 
 print(itemList)
 

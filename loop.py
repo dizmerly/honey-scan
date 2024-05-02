@@ -1,9 +1,12 @@
 import cv2
 import time
+import requests
+import base64
+from api_key import API_TOKEN
+import json
 
 
-# with open("main.py") as file:
-#     exec(file.read())
+
 
 def takeImage(exposure):
     cap = cv2.VideoCapture(0) # video capture source camera (Here webcam of laptop)
@@ -14,18 +17,24 @@ def takeImage(exposure):
 def getImage(img):
     return img
 
-takeImage(2)
+def scanItem():
+    with open("main.py") as file:
+        exec(file.read())
 
 
+while (True):
+    q1 = input("Take an image? y/n or STOP\n")
+    if(q1 == "y"):
+        print("Place item in front of camera\n")
+        takeImage(1)
+        q2 = input("Run program? y/n \n")
+        if (q2 == "y"):
+            scanItem()
+    elif(q1 == "n"):
+        print(0)
+    elif(q1 == "STOP"):
+        break
 
-# while(True):
-#     cv2.imshow('img1',frame) #display the captured image
-#     if cv2.waitKey(1) & 0xFF == ord('y'): #save on pressing 'y'
-#         cv2.imwrite('images/c1.png',frame)
-#         cv2.destroyAllWindows()
-#         break
-#
-# cap.release()
 
 
 
